@@ -1,5 +1,11 @@
 from conection_bd import criar_conexao, fechar_conexao
 from datetime import datetime
+from mysql.connector import Error
+
+# --- FUNÇÃO DE CONEXÃO ---
+def conectar_bd():
+    """Alias para criar_conexao() por compatibilidade."""
+    return criar_conexao()
 
 # --- FUNÇÃO PRINCIPAL DE CADASTRO ---
 def cadastrar_produto_sql(conexao):
