@@ -1,5 +1,26 @@
 from mysql.connector import Error
 
+def adicionar_categoria(conn):
+    nome = input("Digite o nome da nova categoria: ").strip()
+    if not nome:
+        print("Nome da categoria não pode ser vazio.")
+        return
+        
+    cursor = conn.cursor()
+    try:
+        sql = "INSERT INTO categorias (nome_categoria) VALUES (%s)"
+        cursor.execute(sql, (nome,))
+        conn.commit()
+        print(f"Categoria '{nome}' cadastrada com sucesso!")
+    except Error as e:
+        conn.rollback()
+        if "Duplicate entry" in str(e):
+             print(f"Erro: Categoria '{nome}' já existe.")
+        else:
+             print(f"Erro ao cadastrar categoria: {e}")
+    finally:
+        cursor.close()
+
 
 def cadastrar_produto(conn):
 

@@ -1,6 +1,7 @@
 from conexao import criar_conexao
 from criar_bd import inicializar_banco 
 
+from cadastrar import adicionar_categoria
 from cadastrar import cadastrar_produto
 from listar import listar_produtos_com_estoque
 from excluir import excluir_produto_por_id
@@ -30,49 +31,53 @@ def menu_principal():
             print("\n" + "="*50)
             print(" SISTEMA ERP - MENU PRINCIPAL")
             print("="*50)
-            print("1- Cadastrar Novo Produto")
-            print("2- Listar Produtos e Estoque ") 
-            print("3- Registrar Movimentação (Entrada/Saída)")
-            print("4- Gerar Relatórios e Gráficos")
-            print("5- Analisar Giro de Estoque") 
-            print("6- Tempo Médio de Reposição") 
-            print("7- Definir/Verificar Estoque de Segurança") 
-            print("8- Excluir Produto") 
-            print("9- Sair") 
+            print ("1- Adicionar nova categoria")
+            print("2- Cadastrar Novo Produto")
+            print("3- Listar Produtos e Estoque ") 
+            print("4- Registrar Movimentação (Entrada/Saída)")
+            print("5- Gerar Relatórios e Gráficos")
+            print("6- Analisar Giro de Estoque") 
+            print("7- Tempo Médio de Reposição") 
+            print("8- Definir/Verificar Estoque de Segurança") 
+            print("9- Excluir Produto") 
+            print("10- Sair") 
             print("="*50)
             
-            escolha = input("Escolha uma opção (1-9): ").strip()
+            escolha = input("Escolha uma opção (1-10): ").strip()
             
             if escolha == '1':
-                cadastrar_produto(conexao)
-                
+                adicionar_categoria(conexao)
+
             elif escolha == '2':
-                listar_produtos_com_estoque(conexao) 
+                cadastrar_produto(conexao)    
                 
             elif escolha == '3':
-                registrar_movimentacao(conexao)
+                listar_produtos_com_estoque(conexao) 
                 
             elif escolha == '4':
+                registrar_movimentacao(conexao)
+                
+            elif escolha == '5':
                 gerar_relatorios_graficos(conexao)
             
-            elif escolha == '5':
+            elif escolha == '6':
                 analisar_giro_estoque(conexao)
 
-            elif escolha == '6':
+            elif escolha == '7':
                 analisar_tempo_medio_reposicao(conexao)
 
-            elif escolha == '7':
+            elif escolha == '8':
                 definir_e_verificar_estoque_seguranca(conexao)
                 
-            elif escolha == '8':
+            elif escolha == '9':
                 excluir_produto_por_id(conexao) 
                 
-            elif escolha == '9':
+            elif escolha == '10':
                 print("\n Saindo do sistema. Até logo!\n")
                 break
                 
             else:
-                print(" Opção inválida. Tente novamente (1-9).") 
+                print(" Opção inválida. Tente novamente (1-10).") 
 
     except KeyboardInterrupt:
         print("\n\n Programa interrompido pelo usuário.")
